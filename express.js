@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require('axios');
-const timer = require('./middlewares/timer')
+const logger = require('./middlewares/logger')
+const formatError = require('./middlewares/formatError')
 const jsontoxml = require ('jsontoxml')
 const app = express()
 const port = 3000
@@ -13,9 +14,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.listen(port, host, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+
   
 
 const auth =  function (req, res, next) {
@@ -48,45 +47,48 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/users', async (req, res, next) => {
-    usersURL = 'https://jsonplaceholder.typicode.com/users';
-    responce = await axios.get(usersURL);
-    data = responce.data;
-    
+    baseURL = 'https://jsonplaceholder.typicode.com/users';
     try {
-        if (req.query.format === 'xml'){
-            res.status(200).send(jsontoxml(data));
+        //`${baseURL}/?format=xml&offset=2&limit=2`
+        response = await axios.get(baseURL);
+        const jsonData = response.data;
+        xmlData = jsontoxml(jsonData);        
+        
+        if (req.query.format){
+            if (req.query.format === 'xml'){
+                res.status(200).send(xmlData);
+            }
+            else if (req.query.format === 'json'){
+                offset = req.query.offset;
+                limit = req.query.limit;
+
+                res.status(200).send(jsonData.slice(offset, limit));
+
+            }
+            else (next("not a suppurted format"))
         }
-        else if (req.query.format === 'json'){
-            res.status(200).send(jsontoxml(data));
-        }
-        response = await axios.get(`${usersURL}/?format=xml&offset=2&limit=2`);
-        const data = response.data;
-        xml = jsontoxml(data);        
-        res.status(200).send(xml); 
+        else {
+            res.status(200).send(jsonData);
+        } 
     }
     catch (err) {
         res.status(404).send(err)
     }
     
 })
-
-const myLogger = (req, res, next) => {
-    if (req.method == 'POST') {
-        console.log(res.statusCode)
-    }
-    next()
-}
-app.use(myLogger)
+app.use(formatError)
 
 
 
-app.use(timer)
 
-function errorHandler (err, req, res, next) {
+const errorHandler = (err, req, res, next) => {
     if (err === "Bad username") {
         res.status(404).send(`Username ${req.body.name} is invalid`);
     }
-    
   }
 
 app.use(errorHandler)
+
+app.listen(port, host, () => {
+    console.log(`app listening on port ${port}`)
+})

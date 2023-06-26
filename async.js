@@ -19,14 +19,7 @@ const howManyCandlesCallback = (dayNumber, callback) => {
 
 
 const howManyCandles = async (dayNumber) => {
-    return new Promise ((resolve, reject) => {
-        .howManyCandlesCallback(dayNumber, (err, result) => {
-            if ( err ) {
-                return reject(err);
-            }
-            return resolve(result);
-        })
-    });
+    ;
 }
 
 howManyCandles(8).then((result) => {

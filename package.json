@@ -1,0 +1,22 @@
+{
+  "name": "node-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvihuHenya/nodeProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AvihuHenya/nodeProject/issues"
+  },
+  "homepage": "https://github.com/AvihuHenya/nodeProject#readme",
+  "description": "",
+  "dependencies": {
+    "config": "^3.3.9"
+  }
+}
