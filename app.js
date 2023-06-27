@@ -21,9 +21,7 @@ app.use('/github', githubRoute)
 app.use('/guests', guestsRoute)
 
 app.use((err, req, res, next) => {
-    if (err.isJoi){
-        res.status(404).send(err)
-    }
+    res.send(err);
 });
 
 

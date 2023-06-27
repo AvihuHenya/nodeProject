@@ -1,3 +1,5 @@
+const createHttpError = require("http-errors");
+
 module.exports = (validator) => async (req, res, next) => {
     try {
         const validated = await validator.validateAsync(req.body);
@@ -5,8 +7,9 @@ module.exports = (validator) => async (req, res, next) => {
         return next();
     } catch (err) {
         if (err.isJoi) {
-            next(`Unprocessable Content ${err.message}`)
+            //return next(`Unprocessable Content ${err.message}`)
+            return next (createHttpError(422, {message : err.message}))
         }
-        return next("Something bad happend")
+        return next(createHttpError(500))
     }
 }
