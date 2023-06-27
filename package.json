@@ -17,6 +17,11 @@
   "homepage": "https://github.com/AvihuHenya/nodeProject#readme",
   "description": "",
   "dependencies": {
-    "config": "^3.3.9"
+    "config": "^3.3.9",
+    "express-joi-validation": "^5.0.1",
+    "express-validation": "^4.1.0",
+    "joi": "^17.9.2"
+    
+
   }
 }

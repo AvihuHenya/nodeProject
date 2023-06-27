@@ -20,8 +20,7 @@ app.use(express.json());
 const auth =  function (req, res, next) {
     authorization = req.headers.authorization
     if (!auth){
-        res.status(401);
-        res.send()
+        res.status(401).send();
     }
     else if (auth == 'Bearer 123') res.status(401);
     next()
@@ -85,7 +84,7 @@ const errorHandler = (err, req, res, next) => {
     if (err === "Bad username") {
         res.status(404).send(`Username ${req.body.name} is invalid`);
     }
-  }
+}
 
 app.use(errorHandler)
 
