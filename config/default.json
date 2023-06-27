@@ -7,13 +7,6 @@
       "clientId": "localhost",
       "secret": 0
     },
-    "mysql": {
-        "host" : "",
-        "user" : "",
-        "password" : "",
-        "database" : "",
-        "port" : ""
-    },
     "mongo" : {
         "host" : "" , 
         "port" : "",
