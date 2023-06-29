@@ -1,15 +1,20 @@
 {
-    "app" : {
-        "host": "localhost", 
-        "port" : 3000
+    "mysql": {
+        "host": "localhost",
+        "user": "username",
+        "password": "password",
+        "database": "mydb",
+        "port": 3306
+    },
+    
+    "app": {
+        "host": "localhost",
+        "port": 3000
     },
     "github": {
-      "clientId": "localhost",
-      "secret": 0
-    },
-    "mongo" : {
-        "host" : "" , 
-        "port" : "",
-        "db" : ""
+        "client": {
+            "id": "dec825ea1d6a6097d368",
+            "secret": "de34ee15038efeed5260fa53771b5ac0a6fa4d69"
+        }
     }
 }

@@ -1,5 +1,6 @@
 {
     "dependencies": {
+        "moongoose": "^0.0.5",
         "mysql2": "^3.4.2"
     }
 }

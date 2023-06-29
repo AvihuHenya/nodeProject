@@ -17,6 +17,7 @@
   "homepage": "https://github.com/AvihuHenya/nodeProject#readme",
   "description": "",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "config": "^3.3.9",
     "express-joi-validation": "^5.0.1",
     "express-validation": "^4.1.0",
